@@ -15,11 +15,18 @@ public class CustomListTest {
     private CustomList list;
     /**
      * create a mocklist for my citylist
-     * @return
+     * @return CustomList list
      */
     public CustomList MockCityList(){
         list = new CustomList(null,new ArrayList<>());
         return list;
+    }
+    @Test
+    public void countCitiesTest(){
+        list = MockCityList();
+        assertEquals(list.countCities(), 0);
+        list.addCity(new City("Halifax", "NS"));
+        assertEquals(list.countCities(), 1);
     }
     /**
      * get the size of the list
@@ -29,9 +36,9 @@ public class CustomListTest {
     @Test
     public void addCityTest(){
         list = MockCityList();
-        int listSize = list.getCount();
+        int listSize = list.countCities();
         list.addCity(new City("Estevan", "SK"));
-        assertEquals(list.getCount(),listSize + 1);
+        assertEquals(list.countCities(),listSize + 1);
     }
     /**
      * check if city is contained in list
@@ -39,7 +46,7 @@ public class CustomListTest {
      * check again if city is now contained in list
      */
     @Test
-    void testHasCity(){
+    public void testHasCity(){
         list = MockCityList();
         City city = new City("Vancouver","British Columbia");
         assertFalse(list.hasCity(city));
@@ -52,13 +59,13 @@ public class CustomListTest {
      * check if our current size matches the initial ize minus one
      */
     @Test
-    void testDeleteCity(){
+    public void testDeleteCity(){
         list = MockCityList();
         int listSize = list.getCount();
         City city = new City("Edmonton", "AB");
         list.addCity(city);
-        assertEquals(list.getCount(), listSize + 1);
+        assertEquals(list.countCities(), listSize + 1);
         list.deleteCity(city);
-        assertEquals(list.getCount(), listSize);
+        assertEquals(list.countCities(), listSize);
     }
 }
