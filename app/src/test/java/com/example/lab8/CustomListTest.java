@@ -21,12 +21,18 @@ public class CustomListTest {
         list = new CustomList(null,new ArrayList<>());
         return list;
     }
+
+    /**
+     * gets the size of the list
+     */
     @Test
     public void countCitiesTest(){
         list = MockCityList();
         assertEquals(list.countCities(), 0);
         list.addCity(new City("Halifax", "NS"));
         assertEquals(list.countCities(), 1);
+        list.addCity(new City("Moncton", "NB"));
+        assertEquals(list.countCities(), 2);
     }
     /**
      * get the size of the list
