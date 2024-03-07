@@ -7,8 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 //import org.junit.Before;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -47,5 +45,17 @@ public class CustomListTest {
         assertFalse(list.hasCity(city));
         list.addCity(city);
         assertTrue(list.hasCity(city));
+    }
+    /**
+     * get the size of the list
+     * decrease the list by deleting a city
+     * check if our current size matches the initial ize minus one
+     */
+    @Test
+    void testDeleteCity(){
+        list = MockCityList();
+        int listSize = list.getCount();
+        list.deleteCity(new City("Estevan", "SK"));
+        assertEquals(list.getCount(), listSize - 1);
     }
 }
